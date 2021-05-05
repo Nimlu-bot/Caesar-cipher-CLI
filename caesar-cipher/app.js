@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { program } from 'commander/esm.mjs';
 import { checkOptions } from './checker.js';
 import { HandleErrors } from './handleErrors.js';

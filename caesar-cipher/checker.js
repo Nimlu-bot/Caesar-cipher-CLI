@@ -1,4 +1,5 @@
 import fs from 'fs';
+
 const ENCODE = 'encode';
 const DECODE = 'decode';
 

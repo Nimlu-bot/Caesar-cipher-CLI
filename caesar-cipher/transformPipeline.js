@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { pipeline } from 'stream';
 import { HandleErrors } from './handleErrors.js';
 import { readStream } from './readStream.js';
