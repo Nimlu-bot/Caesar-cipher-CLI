@@ -14,6 +14,6 @@ const parseCLIOptions = () => {
   return options;
 };
 
-const result = checkOptions(parseCLIOptions())
+checkOptions(parseCLIOptions())
   .then((opt) => transformPipeline(opt))
   .catch((error, opt) => HandleErrors(error, opt));
