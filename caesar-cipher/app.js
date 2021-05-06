@@ -1,5 +1,7 @@
 import { program } from 'commander/esm.mjs';
 import { checkOptions } from './checker.js';
+import { HandleErrors } from './handleErrors.js';
+import { transformPipeline } from './transformPipeline.js';
 
 const parseCLIOptions = () => {
   const options = program
@@ -12,12 +14,6 @@ const parseCLIOptions = () => {
   return options;
 };
 
-try {
-  const result = checkOptions(parseCLIOptions());
-
-  console.log(result);
-} catch (error) {
-  console.log('fdkfjdkfjdk   ' + error);
-}
-
-console.log('hi');
+const result = checkOptions(parseCLIOptions())
+  .then((opt) => transformPipeline(opt))
+  .catch((error, opt) => HandleErrors(error, opt));
