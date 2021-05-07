@@ -4,23 +4,33 @@ const ENCODE = 'encode';
 const DECODE = 'decode';
 
 const checkOptions = async (options) => {
+  
+  if (!options.shift) {
+    throw Error('required option "-s, --shift <num>" not specified');
+  }
+
+  if (!options.action) {
+    throw new Error('required option "-a, --action <action>" not specified');
+  }
   if (options.action.toLowerCase() !== ENCODE && options.action.toLowerCase() !== DECODE) {
     throw Error(`action must be ${ENCODE} or ${DECODE}`);
   }
-  const numShift = parseInt(options.shift, 10);
+
+  const numShift = Number.isInteger(Number(options.shift));
   if (!numShift) {
     throw Error(`shift must be integer`);
   }
 
-  const checkFile = async (files) => {
-    await Promise.all(files.filter((file) => file).map((file) => fs.promises.access(file, fs.constants.F_OK)));
-  };
   try {
-    await checkFile([options.input, options.output]);
+    await fs.promises.access(options.input, fs.constants.F_OK);
   } catch (error) {
-    throw Error(`files not found`);
+    throw Error(`input file not found or inaccessible`);
   }
-
+  try {
+    await fs.promises.access(options.output, fs.constants.F_OK);
+  } catch (error) {
+    throw Error(`output file not found or inaccessible`);
+  }
   return options;
 };
 

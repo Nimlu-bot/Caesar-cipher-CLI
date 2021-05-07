@@ -5,7 +5,6 @@ const ALPHABET_LENGTH = 26;
 
 const cipher = (chunk, shift, action) => {
   let isEncoded = action === ENCODE;
-  let b = 0;
   let numShift = +shift % ALPHABET_LENGTH;
   isEncoded = numShift >= 0 ? isEncoded : !isEncoded;
   numShift = Math.abs(numShift);
