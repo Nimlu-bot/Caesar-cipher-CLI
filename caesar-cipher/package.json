@@ -13,7 +13,8 @@
     "type": "git:github.com/Nimlu-bot/Caesar-cipher-CLI.gitt"
   },
   "dependencies": {
-    "commander": "^7.2.0"
+    "commander": "^7.2.0",
+    "minimist": "^1.2.5"
   },
   "devDependencies": {
     "eslint": "^7.25.0",

@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import { Transform } from 'stream';
 import { cipher } from './cipher.js';
 
