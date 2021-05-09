@@ -1,5 +1,5 @@
 import { Transform } from 'stream';
-import { cipher } from './cipher.js';
+import { cipher } from '../utils/cipher.js';
 
 export const transformSteam = (shift, action) =>
   new Transform({

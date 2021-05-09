@@ -22,7 +22,6 @@ Installation instructions:
 
   In the command prompt open the directory containing the app and run following commands:
 
-      cd caesar-cipher
       npm i
 
 Usage:
@@ -48,8 +47,12 @@ Examples:
 
 ```
 
-1.  If input or output file isn't exist it wouldn't be created.
-2.  If --input option is omitted - STDIN is used as an input source. Use Ctrl+C for break input.
-3.  If --output option is omitted - STDOUT is used as an output destination.
-4.  --shift value can be negative and can exceed the size of the alphabet.
-5.  Only English alphabet characters are encoded/decoded, all other characters will be kept intact.
+If input or output file isn't exist it wouldn't be created.
+
+If --input option is omitted - STDIN is used as an input source. Use Ctrl+C for break input.
+
+If --output option is omitted - STDOUT is used as an output destination.
+
+--shift value can be negative and can exceed the size of the alphabet.
+
+Only English alphabet characters are encoded/decoded, all other characters will be kept intact.
