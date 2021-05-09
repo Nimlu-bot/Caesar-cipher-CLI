@@ -1,11 +1,10 @@
-/* eslint-disable import/extensions */
 import { pipeline } from 'stream';
 import { HandleErrors } from './handleErrors.js';
 import { readStream } from './readStream.js';
 import { transformSteam } from './transformStream.js';
 import { writeStream } from './writeStream.js';
 
-const transformPipeline = (options) => {
+export const transformPipeline = (options) => {
   pipeline(
     readStream(options.input),
     transformSteam(options.shift, options.action),
@@ -13,5 +12,3 @@ const transformPipeline = (options) => {
     (err) => HandleErrors(err)
   );
 };
-
-export { transformPipeline };

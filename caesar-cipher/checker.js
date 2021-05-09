@@ -4,11 +4,14 @@ const ENCODE = 'encode';
 const DECODE = 'decode';
 
 const checkOptions = async (options) => {
-  if (options.shift === undefined) {
+
+  const isShiftEmpty = ['-a', '-i', '-o'].includes(options.shift);
+
+  if (options.shift === undefined || isShiftEmpty) {
     throw Error('required option -s or --shift <num> not specified');
   }
 
-  if (!options.action) {
+  if (!options.action || options.action === true) {
     throw new Error('required option -a or --action <string> not specified');
   }
 
@@ -16,13 +19,13 @@ const checkOptions = async (options) => {
     throw Error(`action must be ${ENCODE} or ${DECODE}`);
   }
 
-  const numShift = Number.isInteger(options.shift);
+  const numShift = Number.isInteger(Number(options.shift));
 
   if (!numShift) {
     throw Error(`shift must be integer`);
   }
 
-  if (options.input === null || options.output === null) {
+  if (options.input === true || options.output === true) {
     throw Error(`an empty file path`);
   }
 

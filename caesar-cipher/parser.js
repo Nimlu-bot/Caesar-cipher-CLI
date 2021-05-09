@@ -1,47 +1,13 @@
-import parseArgs from 'minimist';
-import { HandleErrors } from './handleErrors.js';
+import { program } from 'commander/esm.mjs';
 
-const parseArguments = () => {
-  const args = parseArgs(process.argv.slice(2));
-  delete args._;
-
-  const options = {
-    shift: undefined,
-    action: undefined,
-    output: undefined,
-    input: undefined,
-  };
-
-  try {
-    Object.keys(args).forEach((key) => {
-      if (Array.isArray(args[key])) {
-        throw Error(`something wrong with argument ${key}`);
-      }
-
-      if (key === 'shift' || key === 's') {
-        if (args[key] !== true) {
-          options.shift = args[key];
-        }
-      }
-
-      if (key === 'action' || key === 'a') {
-        options.action = args[key];
-      }
-
-      if (key === 'output' || key === 'o') {
-        options.output = args[key] !== true ? args[key] : null;
-      }
-
-      if (key === 'input' || key === 'i') {
-        options.input = args[key] !== true ? args[key] : null;
-      }
-    });
-  } catch (error) {
-    HandleErrors(error);
-  }
-
-  console.log(options);
+export const parseArguments = () => {
+  const options = program
+    .storeOptionsAsProperties(false)
+    .option('-s, --shift <number>', 'a shift')
+    .option('-a, --action [string]', 'an action encode/decode')
+    .option('-i, --input [string]', 'an input file')
+    .option('-o, --output [string]', 'an output file')
+    .parse(process.argv)
+    .opts();
   return options;
 };
-
-export { parseArguments };
